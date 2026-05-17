@@ -101,8 +101,12 @@ func runCommandWithTimestamper(args []string, timestamper *Timestamper, delim st
 		for sig := range sigs {
 			switch sig {
 			case syscall.SIGWINCH:
-				if err := pty.Setsize(ptmx, getPtyWinsize()); err != nil {
-					log.Println("error resizing pty:", err)
+				winsize := getPtyWinsize()
+				// If stdin isn't a tty, getPtyWinsize returns nil, in which case we skip resizing the pty.
+				if winsize != nil {
+					if err := pty.Setsize(ptmx, winsize); err != nil {
+						log.Println("error resizing pty:", err)
+					}
 				}
 
 			case syscall.SIGINT:

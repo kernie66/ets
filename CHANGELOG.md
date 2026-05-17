@@ -1,5 +1,10 @@
 ## Changelog
 
+### 0.4.0
+
+* Forked from fork,
+* Removed pty resize error if not a tty, to remove printout when used with launchd on MacOS
+
 ### 0.3.1
 
 * Golang updated from 1.22 to 1.23,

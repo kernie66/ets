@@ -1,4 +1,4 @@
-module github.com/gdubicki/ets
+module github.com/kernie66/ets
 
 go 1.23
 
